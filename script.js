@@ -44,3 +44,14 @@ function deletePlan(button) {
             '<p class="empty">No travel plans added yet.</p>';
     }
 }
+function showBudget() {
+    const budget = document.getElementById("budget").value;
+    const result = document.getElementById("budgetResult");
+
+    if (budget === "") {
+        result.textContent = "Please enter your budget.";
+        return;
+    }
+
+    result.textContent = "Your trip budget is ₹" + budget;
+}
