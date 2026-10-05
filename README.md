@@ -1,47 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Itinerary Planner</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+# Travel Itinerary Planner
 
-<body>
+## Overview
+Travel Itinerary Planner is a simple project that helps users organize and plan their trips efficiently.
 
-    <header>
-        <h1>✈️ Travel Itinerary Planner</h1>
-        <p>Plan your trip easily and organize your activities.</p>
-    </header>
+## Features
+- Create a travel itinerary
+- Add destinations
+- Plan activities
+- Organize travel dates
+- Keep trip information in one place
 
-    <main>
-        <section class="planner">
-            <h2>Add Travel Plan</h2>
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
 
-            <input type="text" id="destination"
-                   placeholder="Enter destination">
+## Project Goal
+The goal of this project is to provide a simple and organized way to plan travel itineraries.
 
-            <input type="date" id="travelDate">
+## Future Enhancements
+- Weather information
+- Map integration
+- Hotel and flight details
+- Budget tracking
 
-            <input type="text" id="activity"
-                   placeholder="Enter activity">
-
-            <button onclick="addPlan()">Add Plan</button>
-        </section>
-
-        <section class="itinerary">
-            <h2>My Itinerary</h2>
-            <div id="plans">
-                <p class="empty">No travel plans added yet.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Travel Itinerary Planner</p>
-    </footer>
-
-    <script src="script.js"></script>
-
-</body>
-</html>
+## Team
+Team 9: Syntax Squad
