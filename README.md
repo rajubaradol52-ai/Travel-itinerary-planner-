@@ -16,7 +16,7 @@ Travel Itinerary Planner is a simple project that helps users organize and plan 
 - JavaScript
 
 ## Project Goal
-The goal of this project is to provide a simple and organized way to plan travel itineraries.
+The goal of this project is to make travel planning simple and organized for every user.
 
 ## Future Enhancements
 - Weather information
