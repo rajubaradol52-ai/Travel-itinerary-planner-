@@ -6,240 +6,106 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #eef4ff, #f8fbff);
-    color: #333;
-    min-height: 100vh;
+    background: #f2f6ff;
+    padding: 30px;
 }
 
-/* Header */
-header {
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
     text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
-    color: white;
+    margin-bottom: 5px;
 }
 
-header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
 }
 
-header p {
-    font-size: 16px;
-}
-
-/* Main */
-main {
-    width: 92%;
-    max-width: 850px;
-    margin: 30px auto;
-}
-
-/* Sections */
-.planner,
-.itinerary,
-.budget-section,
-.expense-section {
+.form-box {
     background: white;
     padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.form-box h2 {
     margin-bottom: 20px;
-    color: #1e3a8a;
 }
 
-/* Inputs */
-input {
-    width: 100%;
-    padding: 13px;
-    margin-bottom: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-}
-
-input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-}
-
-/* Buttons */
-button {
-    width: 100%;
-    padding: 13px;
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
     font-weight: bold;
-    transition: 0.2s;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+button {
+    margin-top: 20px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 button:hover {
-    transform: translateY(-1px);
-    opacity: 0.95;
+    background: #1d4ed8;
 }
 
-/* Travel plan */
-.plan {
-    padding: 18px;
-    margin-bottom: 14px;
-    background: #f0f6ff;
-    border-left: 5px solid #2563eb;
+.plan-title {
+    margin: 30px 0 15px;
+}
+
+.trip-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
     border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.plan h3 {
-    margin-bottom: 8px;
-    color: #1e40af;
+.trip-card h3 {
+    margin-bottom: 10px;
 }
 
-.plan p {
-    margin: 5px 0;
+.trip-card p {
+    margin: 7px 0;
 }
 
-/* Delete button */
 .delete-btn {
-    margin-top: 12px;
-    width: auto;
-    padding: 8px 16px;
     background: #dc2626;
+    margin-right: 8px;
 }
 
 .delete-btn:hover {
     background: #b91c1c;
 }
 
-/* Budget result */
-#budgetResult {
-    margin-top: 15px;
-    padding: 12px;
-    background: #ecfdf5;
-    color: #047857;
-    border-radius: 8px;
-    font-weight: bold;
+.edit-btn {
+    background: #f59e0b;
 }
 
-/* Expense summary */
-.expense-summary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.expense-summary div {
-    padding: 18px;
-    background: #f8fafc;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.expense-summary span {
-    display: block;
-    font-size: 14px;
-    color: #64748b;
-    margin-bottom: 8px;
-}
-
-.expense-summary strong {
-    font-size: 22px;
-    color: #1e3a8a;
-}
-
-/* Expense item */
-.expense-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 14px;
-    margin-bottom: 10px;
-    background: #fff7ed;
-    border-left: 5px solid #f97316;
-    border-radius: 8px;
-}
-
-.expense-item strong {
-    color: #c2410c;
-}
-
-.expense-delete {
-    width: auto;
-    padding: 7px 12px;
-    background: #dc2626;
-    font-size: 14px;
-}
-
-/* Empty message */
-.empty {
-    color: #777;
-    text-align: center;
-    padding: 15px;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 25px;
-    background: #172033;
-    color: white;
-    margin-top: 30px;
-}
-
-footer p {
-    margin: 5px;
-}
-
-/* Mobile Design */
-@media (max-width: 600px) {
-
-    header {
-        padding: 30px 15px;
-    }
-
-    header h1 {
-        font-size: 25px;
-    }
-
-    header p {
-        font-size: 14px;
-    }
-
-    main {
-        width: 94%;
-        margin: 20px auto;
-    }
-
-    .planner,
-    .itinerary,
-    .budget-section,
-    .expense-section {
-        padding: 18px;
-        border-radius: 12px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    .expense-summary {
-        grid-template-columns: 1fr;
-    }
-
-    .expense-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .expense-delete {
-        width: 100%;
-    }
+.edit-btn:hover {
+    background: #d97706;
 }
