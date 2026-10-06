@@ -6,85 +6,240 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f4f7fb;
+    background: linear-gradient(135deg, #eef4ff, #f8fbff);
     color: #333;
+    min-height: 100vh;
 }
 
+/* Header */
 header {
     text-align: center;
-    padding: 30px;
-    background: #2563eb;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
 }
 
 header h1 {
+    font-size: 32px;
     margin-bottom: 10px;
 }
 
+header p {
+    font-size: 16px;
+}
+
+/* Main */
 main {
-    width: 90%;
-    max-width: 800px;
+    width: 92%;
+    max-width: 850px;
     margin: 30px auto;
 }
 
+/* Sections */
 .planner,
-.itinerary {
+.itinerary,
+.budget-section,
+.expense-section {
     background: white;
     padding: 25px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 h2 {
     margin-bottom: 20px;
+    color: #1e3a8a;
 }
 
+/* Inputs */
 input {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
 }
 
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Buttons */
 button {
     width: 100%;
-    padding: 12px;
-    background: #2563eb;
+    padding: 13px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
 button:hover {
-    background: #1d4ed8;
+    transform: translateY(-1px);
+    opacity: 0.95;
 }
 
+/* Travel plan */
 .plan {
-    padding: 15px;
-    margin-bottom: 12px;
-    background: #eef4ff;
+    padding: 18px;
+    margin-bottom: 14px;
+    background: #f0f6ff;
     border-left: 5px solid #2563eb;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
+.plan h3 {
+    margin-bottom: 8px;
+    color: #1e40af;
+}
+
+.plan p {
+    margin: 5px 0;
+}
+
+/* Delete button */
 .delete-btn {
-    margin-top: 10px;
+    margin-top: 12px;
     width: auto;
-    padding: 8px 15px;
+    padding: 8px 16px;
     background: #dc2626;
 }
 
-.empty {
-    color: #777;
+.delete-btn:hover {
+    background: #b91c1c;
 }
 
+/* Budget result */
+#budgetResult {
+    margin-top: 15px;
+    padding: 12px;
+    background: #ecfdf5;
+    color: #047857;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Expense summary */
+.expense-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.expense-summary div {
+    padding: 18px;
+    background: #f8fafc;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.expense-summary span {
+    display: block;
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.expense-summary strong {
+    font-size: 22px;
+    color: #1e3a8a;
+}
+
+/* Expense item */
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #fff7ed;
+    border-left: 5px solid #f97316;
+    border-radius: 8px;
+}
+
+.expense-item strong {
+    color: #c2410c;
+}
+
+.expense-delete {
+    width: auto;
+    padding: 7px 12px;
+    background: #dc2626;
+    font-size: 14px;
+}
+
+/* Empty message */
+.empty {
+    color: #777;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Footer */
 footer {
     text-align: center;
-    padding: 20px;
-    background: #222;
+    padding: 25px;
+    background: #172033;
     color: white;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+/* Mobile Design */
+@media (max-width: 600px) {
+
+    header {
+        padding: 30px 15px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .planner,
+    .itinerary,
+    .budget-section,
+    .expense-section {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .expense-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .expense-delete {
+        width: 100%;
+    }
 }
