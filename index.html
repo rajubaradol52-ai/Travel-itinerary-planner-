@@ -11,12 +11,14 @@
 
     <header>
         <h1>✈️ Travel Itinerary Planner</h1>
-        <p>Plan your trip easily and organize your activities.</p>
+        <p>Plan your trip, manage expenses and enjoy your journey.</p>
     </header>
 
     <main>
+
+        <!-- Travel Planner -->
         <section class="planner">
-            <h2>Add Travel Plan</h2>
+            <h2>📍 Add Travel Plan</h2>
 
             <input type="text" id="destination"
                    placeholder="Enter destination">
@@ -26,29 +28,64 @@
             <input type="text" id="activity"
                    placeholder="Enter activity">
 
-            <button onclick="addPlan()">Add Plan</button>
+            <button onclick="addPlan()">➕ Add Plan</button>
         </section>
 
+        <!-- Itinerary -->
         <section class="itinerary">
-            <h2>My Itinerary</h2>
-            <div class="budget">
-    <h2>Trip Budget</h2>
+            <h2>🗺️ My Itinerary</h2>
 
-    <input type="number" id="budget"
-           placeholder="Enter your budget">
-
-    <button onclick="showBudget()">Set Budget</button>
-
-    <p id="budgetResult"></p>
-</div>
             <div id="plans">
                 <p class="empty">No travel plans added yet.</p>
             </div>
         </section>
+
+        <!-- Budget -->
+        <section class="budget-section">
+            <h2>💰 Trip Budget</h2>
+
+            <input type="number" id="budget"
+                   placeholder="Enter your budget">
+
+            <button onclick="showBudget()">💵 Set Budget</button>
+
+            <p id="budgetResult"></p>
+        </section>
+
+        <!-- Expense Tracker -->
+        <section class="expense-section">
+            <h2>🧾 Expense Tracker</h2>
+
+            <input type="text" id="expenseName"
+                   placeholder="Expense description">
+
+            <input type="number" id="expenseAmount"
+                   placeholder="Enter expense amount">
+
+            <button onclick="addExpense()">➕ Add Expense</button>
+
+            <div class="expense-summary">
+                <div>
+                    <span>Total Expenses</span>
+                    <strong id="totalExpenses">₹0</strong>
+                </div>
+
+                <div>
+                    <span>Remaining Budget</span>
+                    <strong id="remainingBudget">₹0</strong>
+                </div>
+            </div>
+
+            <div id="expenses">
+                <p class="empty">No expenses added yet.</p>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p>Travel Itinerary Planner</p>
+        <p>✈️ Travel Itinerary Planner</p>
+        <p>Plan Smart • Travel Better</p>
     </footer>
 
     <script src="script.js"></script>
