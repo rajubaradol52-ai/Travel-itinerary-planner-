@@ -1,243 +1,111 @@
-// Load saved data when the page opens
-document.addEventListener("DOMContentLoaded", function () {
-    loadPlans();
-    loadBudget();
-    loadExpenses();
-});
+let trips = JSON.parse(localStorage.getItem("trips")) || [];
 
-// ==================== TRAVEL PLANS ====================
+function addTrip() {
 
-function addPlan() {
-    const destination = document.getElementById("destination").value.trim();
-    const travelDate = document.getElementById("travelDate").value;
-    const activity = document.getElementById("activity").value.trim();
+    const destination = document.getElementById("destination").value;
+    const date = document.getElementById("date").value;
+    const activity = document.getElementById("activity").value;
+    const travelDetails = document.getElementById("travelDetails").value;
+    const notes = document.getElementById("notes").value;
 
-    if (destination === "" || travelDate === "" || activity === "") {
-        alert("Please fill in all fields.");
+    if (destination === "" || date === "" || activity === "") {
+        alert("Please enter destination, date and activity.");
         return;
     }
 
-    let plans = JSON.parse(localStorage.getItem("travelPlans")) || [];
-
-    plans.push({
+    const trip = {
+        id: Date.now(),
         destination: destination,
-        travelDate: travelDate,
-        activity: activity
+        date: date,
+        activity: activity,
+        travelDetails: travelDetails,
+        notes: notes
+    };
+
+    trips.push(trip);
+
+    saveTrips();
+    displayTrips();
+    clearForm();
+}
+
+function displayTrips() {
+
+    const tripList = document.getElementById("tripList");
+
+    tripList.innerHTML = "";
+
+    if (trips.length === 0) {
+        tripList.innerHTML = "<p>No travel plans added yet.</p>";
+        return;
+    }
+
+    trips.forEach(function(trip) {
+
+        const card = document.createElement("div");
+        card.className = "trip-card";
+
+        card.innerHTML = `
+            <h3>📍 ${trip.destination}</h3>
+            <p><strong>📅 Date:</strong> ${trip.date}</p>
+            <p><strong>🎯 Activity:</strong> ${trip.activity}</p>
+            <p><strong>🚆 Travel:</strong> ${trip.travelDetails}</p>
+            <p><strong>📝 Notes:</strong> ${trip.notes}</p>
+
+            <button class="edit-btn" onclick="editTrip(${trip.id})">
+                Edit
+            </button>
+
+            <button class="delete-btn" onclick="deleteTrip(${trip.id})">
+                Delete
+            </button>
+        `;
+
+        tripList.appendChild(card);
+    });
+}
+
+function deleteTrip(id) {
+
+    trips = trips.filter(function(trip) {
+        return trip.id !== id;
     });
 
-    localStorage.setItem("travelPlans", JSON.stringify(plans));
+    saveTrips();
+    displayTrips();
+}
 
-    displayPlans(plans);
+function editTrip(id) {
+
+    const trip = trips.find(function(trip) {
+        return trip.id === id;
+    });
+
+    document.getElementById("destination").value = trip.destination;
+    document.getElementById("date").value = trip.date;
+    document.getElementById("activity").value = trip.activity;
+    document.getElementById("travelDetails").value = trip.travelDetails;
+    document.getElementById("notes").value = trip.notes;
+
+    deleteTrip(id);
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function clearForm() {
 
     document.getElementById("destination").value = "";
-    document.getElementById("travelDate").value = "";
+    document.getElementById("date").value = "";
     document.getElementById("activity").value = "";
+    document.getElementById("travelDetails").value = "";
+    document.getElementById("notes").value = "";
 }
 
-function displayPlans(plans) {
-    const plansContainer = document.getElementById("plans");
-
-    plansContainer.innerHTML = "";
-
-    if (plans.length === 0) {
-        plansContainer.innerHTML =
-            '<p class="empty">No travel plans added yet.</p>';
-        return;
-    }
-
-    plans.forEach(function (plan, index) {
-        const planDiv = document.createElement("div");
-        planDiv.className = "plan";
-
-        planDiv.innerHTML = `
-            <h3>📍 ${plan.destination}</h3>
-            <p><strong>Date:</strong> ${plan.travelDate}</p>
-            <p><strong>Activity:</strong> ${plan.activity}</p>
-            <button class="delete-btn" onclick="deletePlan(${index})">
-                🗑️ Delete
-            </button>
-        `;
-
-        plansContainer.appendChild(planDiv);
-    });
+function saveTrips() {
+    localStorage.setItem("trips", JSON.stringify(trips));
 }
 
-function deletePlan(index) {
-    let plans = JSON.parse(localStorage.getItem("travelPlans")) || [];
-
-    plans.splice(index, 1);
-
-    localStorage.setItem("travelPlans", JSON.stringify(plans));
-
-    displayPlans(plans);
-}
-
-function loadPlans() {
-    const plans = JSON.parse(localStorage.getItem("travelPlans")) || [];
-    displayPlans(plans);
-}
-
-
-// ==================== BUDGET ====================
-
-function showBudget() {
-    const budgetInput = document.getElementById("budget");
-    const budget = budgetInput.value;
-    const result = document.getElementById("budgetResult");
-
-    if (budget === "" || Number(budget) <= 0) {
-        result.textContent = "Please enter a valid budget.";
-        return;
-    }
-
-    localStorage.setItem("tripBudget", budget);
-
-    result.textContent = "Your trip budget is ₹" + Number(budget).toLocaleString("en-IN");
-
-    updateExpenseSummary();
-}
-
-function loadBudget() {
-    const savedBudget = localStorage.getItem("tripBudget");
-    const result = document.getElementById("budgetResult");
-    const budgetInput = document.getElementById("budget");
-
-    if (savedBudget !== null) {
-        budgetInput.value = savedBudget;
-
-        result.textContent =
-            "Your trip budget is ₹" +
-            Number(savedBudget).toLocaleString("en-IN");
-    }
-}
-
-
-// ==================== EXPENSE TRACKER ====================
-
-function addExpense() {
-    const expenseName =
-        document.getElementById("expenseName").value.trim();
-
-    const expenseAmount =
-        document.getElementById("expenseAmount").value;
-
-    if (expenseName === "" || expenseAmount === "" || Number(expenseAmount) <= 0) {
-        alert("Please enter a valid expense.");
-        return;
-    }
-
-    let expenses =
-        JSON.parse(localStorage.getItem("travelExpenses")) || [];
-
-    expenses.push({
-        name: expenseName,
-        amount: Number(expenseAmount)
-    });
-
-    localStorage.setItem(
-        "travelExpenses",
-        JSON.stringify(expenses)
-    );
-
-    displayExpenses(expenses);
-
-    document.getElementById("expenseName").value = "";
-    document.getElementById("expenseAmount").value = "";
-
-    updateExpenseSummary();
-}
-
-function displayExpenses(expenses) {
-    const expensesContainer =
-        document.getElementById("expenses");
-
-    expensesContainer.innerHTML = "";
-
-    if (expenses.length === 0) {
-        expensesContainer.innerHTML =
-            '<p class="empty">No expenses added yet.</p>';
-        return;
-    }
-
-    expenses.forEach(function (expense, index) {
-
-        const expenseDiv = document.createElement("div");
-        expenseDiv.className = "expense-item";
-
-        expenseDiv.innerHTML = `
-            <div>
-                <strong>${expense.name}</strong>
-                <p>₹${expense.amount.toLocaleString("en-IN")}</p>
-            </div>
-
-            <button class="expense-delete"
-                    onclick="deleteExpense(${index})">
-                🗑️ Delete
-            </button>
-        `;
-
-        expensesContainer.appendChild(expenseDiv);
-    });
-}
-
-function deleteExpense(index) {
-    let expenses =
-        JSON.parse(localStorage.getItem("travelExpenses")) || [];
-
-    expenses.splice(index, 1);
-
-    localStorage.setItem(
-        "travelExpenses",
-        JSON.stringify(expenses)
-    );
-
-    displayExpenses(expenses);
-
-    updateExpenseSummary();
-}
-
-function loadExpenses() {
-    const expenses =
-        JSON.parse(localStorage.getItem("travelExpenses")) || [];
-
-    displayExpenses(expenses);
-
-    updateExpenseSummary();
-}
-
-
-// ==================== SUMMARY ====================
-
-function updateExpenseSummary() {
-
-    const expenses =
-        JSON.parse(localStorage.getItem("travelExpenses")) || [];
-
-    const budget =
-        Number(localStorage.getItem("tripBudget")) || 0;
-
-    let totalExpenses = 0;
-
-    expenses.forEach(function (expense) {
-        totalExpenses += Number(expense.amount);
-    });
-
-    const remainingBudget =
-        budget - totalExpenses;
-
-    document.getElementById("totalExpenses").textContent =
-        "₹" + totalExpenses.toLocaleString("en-IN");
-
-    const remainingElement =
-        document.getElementById("remainingBudget");
-
-    remainingElement.textContent =
-        "₹" + remainingBudget.toLocaleString("en-IN");
-
-    // Change message when budget is exceeded
-    if (remainingBudget < 0) {
-        remainingElement.style.color = "#dc2626";
-    } else {
-        remainingElement.style.color = "#1e3a8a";
-    }
-}
+displayTrips();
