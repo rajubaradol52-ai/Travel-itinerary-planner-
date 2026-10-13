@@ -59,7 +59,11 @@ A travel plan can contain:
 🎯 Project Objective
 
 The main objective of this project is to create a simple and user-friendly travel planning application while gaining practical experience with GitHub collaboration and version control.
+## Future Improvements
 
+- Add a trip budget tracker
+- Add weather information for destinations
+- Improve the mobile-friendly design
 👥 Team
 
 Team 9 – Syntax Squard 🔥
